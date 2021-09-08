@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Pizza Di Roma</string>
+    <string name="tab_text_1">Все</string>
+    <string name="tab_text_2">Пицца</string>
+    <string name="tab_text_3">Суши</string>
+    <string name="tab_text_4">другое</string>
+</resources>
