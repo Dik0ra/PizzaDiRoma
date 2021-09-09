@@ -1,6 +1,5 @@
-package com.example.pizzadiroma;
+package com.example.pizzadiroma.ui.main;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,20 +11,20 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.pizzadiroma.R;
+
 public class MyRecycleViewAdapter extends RecyclerView.Adapter<MyRecycleViewAdapter.ViewHolder> {
-    ContentValues contentValues;
+
     private String[] mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
-    // data is passed into the constructor
-    MyRecycleViewAdapter(Context context, String[] data, ContentValues contentValues_from_other_side) {
+   public MyRecycleViewAdapter(Context context, String[] data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
-        this.contentValues = contentValues_from_other_side;
+
     }
 
-    // inflates the cell layout from xml when needed
     @Override
     @NonNull
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -33,26 +32,17 @@ public class MyRecycleViewAdapter extends RecyclerView.Adapter<MyRecycleViewAdap
         return new ViewHolder(view);
     }
 
-    // binds the data to the TextView in each cell
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.p_name.setText(this.mData[position]);
-        if (position == 1) {
-            holder.p_name.setText("" + contentValues.get("name"));
-            holder.p_weight.setText("" + contentValues.get("weight"));
-            holder.p_price.setText("" + contentValues.get("price"));
-//            holder.p_img.setText("" + contentValues.get("img"));
-        }
     }
 
-    // total number of cells
     @Override
     public int getItemCount() {
         return mData.length;
     }
 
 
-    // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView myTextView;
         TextView p_price;
@@ -78,17 +68,14 @@ public class MyRecycleViewAdapter extends RecyclerView.Adapter<MyRecycleViewAdap
         }
     }
 
-    // convenience method for getting data at click position
     String getItem(int id) {
         return mData[id];
     }
 
-    // allows clicks events to be caught
     void setClickListener(ItemClickListener itemClickListener) {
         this.mClickListener = itemClickListener;
     }
 
-    // parent activity will implement this method to respond to click events
     public interface ItemClickListener {
         void onItemClick(View view, int position);
     }

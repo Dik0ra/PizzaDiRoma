@@ -11,8 +11,6 @@ import java.util.List;
 
 public class Product {
 
-    DBHalper dbHelper;
-    SQLiteDatabase db;
 
     private String id, name, description, weight, type, imageUrl, price;
 
@@ -29,14 +27,6 @@ public class Product {
         this.price = price;
     }
 
-    private List<Product> productArr;
-    private void initializeData() {
-    productArr = new ArrayList<>();
-//    ContentValues contentValues = new ContentValues();
-//    dbHelper.getInformations(contentValues);
-//        Cursor cursor   = db.query(dbHelper.TABLE_NAME, null, null, null, null,null,null,null,);
-
-    }
 
 
     public String getId() {

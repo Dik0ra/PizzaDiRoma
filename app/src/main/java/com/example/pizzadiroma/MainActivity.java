@@ -44,9 +44,6 @@ public class MainActivity extends AppCompatActivity  {
     ProgressDialog progressDialog;
     DBHalper dbHelper;
 
-    MyRecycleViewAdapter adapter;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,14 +55,10 @@ public class MainActivity extends AppCompatActivity  {
         viewPager.setAdapter(sectionsPagerAdapter);
         TabLayout tabs = binding.tabs;
         tabs.setupWithViewPager(viewPager);
-
         Log.d(MALOG, "onCreate");
-
         initializeProductsList();
-
         new fetchData().start();
 
-//        SQLiteDatabase db = dbHelper.getWritableDatabase();
     }
 
     private void initializeProductsList() {
@@ -130,7 +123,6 @@ public class MainActivity extends AppCompatActivity  {
                     }
                 }
                 dbHelper.close();
-//                        bdHelper.close();
             } catch (MalformedURLException malformedURLException) {
                 malformedURLException.printStackTrace();
             } catch (IOException e) {
@@ -138,7 +130,6 @@ public class MainActivity extends AppCompatActivity  {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
 
             mainHandler.post(new Runnable() {
                 @Override
