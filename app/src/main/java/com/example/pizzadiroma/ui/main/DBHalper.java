@@ -23,7 +23,7 @@ public class DBHalper extends SQLiteOpenHelper {
     public static final String KEY_TYPE = "type";
     public static final String KEY_IMAGEURL = "imageUrl";
     public static final String KEY_PRICE = "price";
-//    SQLiteDatabase db;
+
     private static final String CREATE_QUERY =
             "CREATE TABLE "+ TABLE_NAME +" ( "
                     + KEY_ID + " INTEGER PRIMARY KEY, "
@@ -65,7 +65,7 @@ public class DBHalper extends SQLiteOpenHelper {
 
     public void getInformations(ContentValues contentValues, SQLiteDatabase db) {
         Cursor cursor;
-//        String[] projections = {KEY_ID,KEY_NAME,KEY_DESCRIPTION,KEY_WEIGHT,KEY_TYPE,KEY_IMAGEURL, KEY_PRICE};
+        String[] projections = {KEY_ID,KEY_NAME,KEY_DESCRIPTION,KEY_WEIGHT,KEY_TYPE,KEY_IMAGEURL, KEY_PRICE};
         cursor = db.query(
                 TABLE_NAME,
                 null,
@@ -75,22 +75,7 @@ public class DBHalper extends SQLiteOpenHelper {
                 null,
                 null
         );
-        cursor.moveToFirst();
-        int idIndex = cursor.getColumnIndex(KEY_ID);
-        Log.d("1", "" + idIndex);
-        int nameIndex = cursor.getColumnIndex(KEY_NAME);
-        int descIndex = cursor.getColumnIndex(KEY_DESCRIPTION);
-        int weightIndex = cursor.getColumnIndex(KEY_WEIGHT);
-        int typeIndex = cursor.getColumnIndex(KEY_TYPE);
-        int urlIndex = cursor.getColumnIndex(KEY_IMAGEURL);
-        int priceIndex = cursor.getColumnIndex(KEY_PRICE);
-        contentValues.put(KEY_ID, cursor.getInt(idIndex));
-        contentValues.put(KEY_NAME, cursor.getString(nameIndex));
-        contentValues.put(KEY_DESCRIPTION, cursor.getString(descIndex));
-        contentValues.put(KEY_WEIGHT, cursor.getString(weightIndex));
-        contentValues.put(KEY_TYPE, cursor.getString(typeIndex));
-        contentValues.put(KEY_IMAGEURL, cursor.getString(urlIndex));
-        contentValues.put(KEY_PRICE, cursor.getString(priceIndex));
+
     }
 
     @Override
